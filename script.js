@@ -1,6 +1,4 @@
-var firstPlayer = 'John';
-var secondPlayer = 'Jane';
-var thirdPlayer = 'Joanne'
+var players = ['John', 'Jane', 'Joanne'];
 
 function getScore() {
     return Math.floor(Math.random() * 10);
@@ -28,4 +26,4 @@ function game(firstPlayer, secondPlayer, thirdPlayer){
   }
 }
 
-game(firstPlayer, secondPlayer, thirdPlayer)
+game(players[0], players[1], players[2]);
