@@ -2,7 +2,8 @@ var firstName = 'John';
 var lastName = 'Doe';
 var age = 23;
 var isMinor = false;
-var isStudent = true;
+var isStudent = false;
+var profession = 'administrator'
 
 if (age < 18) {
   isMinor = true
@@ -16,13 +17,13 @@ console.log(profile);
 console.log('Is ' + firstName + ' ' + lastName + ' a minor?')
 console.log(isMinor)
 
-if(isMinor && isStudent) {
-  console.log('A minor eligible for school lunch');
-} else if(isMinor && !isStudent) {
-    console.log('A minor not eligible for school lunch');
-} else if(!isMinor && isStudent) {
-    console.log('Not a minor but eligible for school lunch');
-}
-else {
-  console.log('Not a minor and not eligible for school lunch');
+switch(profession) {
+  case 'teacher':
+    console.log('teacher');
+  case 'painter':
+    console.log('painter');
+  case 'marketeer':
+    console.log('marketeer');
+  default:
+    console.log('other');
 }
