@@ -16,7 +16,20 @@ var noValue;
 console.log('Initially, noValue = ' + noValue)
 noValue = 'valuable'
 console.log('Then, noValue = ' + noValue)
-
 // variable mutation
 noValue = 'no longer valuable'
 console.log('Later, noValue = ' + noValue)
+
+// added irritating pop up
+// alert(profile)
+
+var birthYear = 1999;
+var currentYear = 2016;
+var currentAge = currentYear - birthYear;
+console.log(currentAge)
+
+// increment currentYear by 1
+currentYear += 1;
+console.log(currentYear);
+currentYear++;
+console.log(currentYear);
