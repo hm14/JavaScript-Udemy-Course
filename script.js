@@ -1,29 +1,23 @@
-var firstName = 'John';
-var lastName = 'Doe';
-var age = 23;
-var isMinor = false;
-var isStudent = false;
-var profession = 'administrator'
+var firstPlayer = 'John';
+var secondPlayer = 'Jane';
+var thirdPlayer = 'Joanne'
+var firstScore = Math.floor(Math.random() * 10);
+var secondScore = Math.floor(Math.random() * 10);
+var thirdScore = Math.floor(Math.random() * 10);
 
-if (age < 18) {
-  isMinor = true
-}
-
-// js uses type coercion so variable types are changed on the go
-// thus, in the code below age can be concatenated to a str
-var profile = firstName + ' ' + lastName + ' is ' + age;
-
-console.log(profile);
-console.log('Is ' + firstName + ' ' + lastName + ' a minor?')
-console.log(isMinor)
-
-switch(profession) {
-  case 'teacher':
-    console.log('teacher');
-  case 'painter':
-    console.log('painter');
-  case 'marketeer':
-    console.log('marketeer');
-  default:
-    console.log('other');
+if (firstScore > secondScore && firstScore > thirdScore) {
+  console.log(firstPlayer + ' won with ' + firstScore + ' points!')
+  console.log(secondPlayer + ' scored ' + secondScore + ' points.')
+  console.log(thirdPlayer + ' scored ' + thirdScore + ' points.')
+} else if (secondScore > firstScore && secondScore > thirdScore) {
+  console.log(secondPlayer + ' won with ' + secondScore + ' points!')
+  console.log(firstPlayer + ' scored ' + firstScore + ' points.')
+  console.log(thirdPlayer + ' scored ' + thirdScore + ' points.')
+} else if (thirdScore > firstScore && thirdScore > secondScore){
+  console.log(thirdPlayer + ' won with ' + thirdScore + ' points!')
+  console.log(firstPlayer + ' scored ' + firstScore + ' points.')
+  console.log(secondPlayer + ' scored ' + secondScore + ' points.')
+} else {
+  console.log("It's a tie!")
+  console.log("The players scored " + firstScore + ', ' + secondScore + ', ' + thirdScore + ' points!')
 }
