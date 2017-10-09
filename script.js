@@ -2,8 +2,8 @@ var john = {
   firstName: 'John',
   lastName: 'Doe',
   score: getScore(),
-  nickname: function() {
-    return this.lastName + this.firstName
+  setNickname: function() {
+    this.nickname = this.lastName + this.firstName
   }
 };
 
@@ -13,14 +13,16 @@ function getScore() {
 
 console.log(john)
 console.log(john.score)
-john.score = getScore()
+john.score = getScore();
 console.log(john['score'])
+john.setNickname()
+console.log(john.nickname)
 
-console.log(john.nickname())
+
 
 var jane = new Object();
 jane.firstName = 'Jane';
-jane.lastName = 'Doe'
-jane.score = getScore()
+jane.lastName = 'Doe';
+jane.score = getScore();
 
 console.log(jane);
