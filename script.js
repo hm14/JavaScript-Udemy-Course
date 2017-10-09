@@ -1,30 +1,21 @@
-var players = ['John', 'Jane', 'Joanne'];
-var scores = new Array()
+var john = {
+  firstName: 'John',
+  lastName: 'Doe',
+  score: 0
+}
 
 function getScore() {
     return Math.floor(Math.random() * 10);
 }
 
-function addScores() {
-  scores.push(getScore());
-  scores.unshift(getScore());
-}
+console.log(john)
+console.log(john.score)
+john.score = getScore()
+console.log(john['score'])
 
-function removeScores() {
-  scores.pop()
-  scores.shift()
-}
+var jane = new Object();
+jane.firstName = 'Jane';
+jane.lastName = 'Doe'
+jane.score = getScore()
 
-console.log(scores);
-addScores();
-console.log(scores);
-addScores();
-console.log(scores);
-removeScores();
-console.log(scores);
-
-if (scores.indexOf(1) === -1) {
-  console.log('1 is not a score')
-} else {
-  console.log('1 is a score')
-}
+console.log(jane);
