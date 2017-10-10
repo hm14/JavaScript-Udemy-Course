@@ -1,16 +1,37 @@
-var speaker = 'Tom';
-
-// console.log(speaker + ': ' + greeting + ' ' + question)
-// this gives an error because the local variables are out of scope globally
+// this points to window object
+console.log(this);
 
 greet()
 
 function greet() {
-  var greeting = 'Hello!';
-  ask();
-  function ask() {
-      var question = 'How are you?';
-      // this does not give an error because global variables are accessible locally
-      console.log(speaker + ': ' + greeting + ' ' + question)
-  }
+  console.log('Hello!')
+  // this points to window object
+  console.log(this)
 }
+
+var john = {
+  name: 'John',
+  yearOfBirth: 1898,
+  getUserId: function() {
+    // this points to john object
+    console.log(this);
+    // prints object john's name
+    console.log(this.name);
+
+    function innerFunc() {
+      // this points to window object
+      console.log(this)
+    }
+    innerFunc();
+  }
+};
+
+john.getUserId();
+
+var mike = {
+  name: 'Mike',
+  yearOfBirth: 1892
+};
+
+mike.getUserId = john.getUserId;
+mike.getUserId();
