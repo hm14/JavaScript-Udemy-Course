@@ -1,31 +1,14 @@
-var names = ['John', 'Jane', 'Joan', 'Jean', 'Jolo'];
-var birthYears = [1990, 1995, 2000, 2005, 2009];
-var ages = [];
-var minors = [];
-var currentYear = 2017;
+console.log(getAge(2017, 1999));
 
-function getAge(birthYear) {
+// console.log(ageInYears(23, 32));
+// this gves an error
+
+function getAge(currentYear, birthYear) {
   return currentYear - birthYear;
 };
 
-function isMinor(age) {
-    if (age < 18) {
-      return true;
-    } else {
-      return false;
-    }
-};
-
-function show() {
-  for (var i=0; i<names.length; i++) {
-    ages.push(getAge(birthYears[i]));
-    minors.push(isMinor(ages[i]));
-    if (minors[i] == true) {
-      console.log(names[i] + ' is a minor with age ' + ages[i])
-    } else {
-      console.log(names[i] + ' is not a minor with age ' + ages[i])
-    }
-  }
+var ageInYears = function(currentAge, years) {
+  return currentAge + years;
 }
 
-show();
+console.log(ageInYears(23, 32));
