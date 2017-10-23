@@ -1,37 +1,29 @@
-// this points to window object
-console.log(this);
+currentYear = 2017;
 
-greet()
-
-function greet() {
-  console.log('Hello!')
-  // this points to window object
-  console.log(this)
-}
+// function constructor
 
 var john = {
   name: 'John',
-  yearOfBirth: 1898,
-  getUserId: function() {
-    // this points to john object
-    console.log(this);
-    // prints object john's name
-    console.log(this.name);
+  yearOfBirth: 1999,
+  job: 'Teacher'
+};
 
-    function innerFunc() {
-      // this points to window object
-      console.log(this)
-    }
-    innerFunc();
+var Person = function(name, yearOfBirth, job) {
+  this.name = name,
+  this.yearOfBirth = yearOfBirth,
+  this.job = job
+  this.calculateAge = function() {
+    console.log(currentYear - yearOfBirth);
   }
 };
 
-john.getUserId();
+// new creates a new empty object
+// then the constructor function is called
+// this in the constructor points to the new empty object
+var john = new Person('John', 1999, 'teacher');
+var jane = new Person('Jane', 1989, 'manager');
+var mark = new Person('Mark', 2001, 'student');
 
-var mike = {
-  name: 'Mike',
-  yearOfBirth: 1892
-};
-
-mike.getUserId = john.getUserId;
-mike.getUserId();
+john.calculateAge();
+jane.calculateAge();
+mark.calculateAge();
