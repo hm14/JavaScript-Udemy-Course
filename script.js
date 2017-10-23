@@ -1,53 +1,40 @@
-// primitives vs. objects
+var currentYear = 2017;
 
-// Prmitive
-// primitives are accessed as values
-var a = 1;
-var b = a;
-console.log('a = ' + a);
-console.log('b = ' + b);
-a = 11;
-console.log('new a = ' + a);
+// First class functions
 
-// Objects
+var birthYear = [1989, 1978, 1987, 2006, 1969];
 
-// objects are accessed by reference
-// objects are accessed as place in memory
-
-var obj1 = {
-  name: 'John',
-  age: 26
-};
-
-var obj2 = obj1;
-
-console.log('obj1.age is ' + obj1.age);
-console.log('obj2.age is ' + obj2.age);
-
-obj1.age = 32;
-
-console.log('obj1.age is ' + obj1.age);
-console.log('obj2.age is ' + obj2.age);
-
-// Functions
-
-var age = 44;
-var obj = {
-  name: 'Gina',
-  city: 'Garden'
+function arrayCalc(birthYear, fn) {
+  var resultArray = [];
+  for(var i=0; i<birthYear.length; i++) {
+    resultArray.push(fn(birthYear[i]));
+  }
+  return resultArray;
 }
 
-// when primitives are passed to functions, a copy is created
-// when objects are passed to functions, no copy is made
-// the object is not really passed to the function
-// but a reference that points to the object
-
-function change(a, b) {
-  a = 33;
-  b.city = 'San Francisco';
+function calculateAge(birthYear) {
+  return currentYear - birthYear;
 }
 
-change(age, obj);
+function isMinor(age) {
+  return age >= 18;
+}
 
-console.log(age);
-console.log(obj.city);
+function maxHeartRate(age) {
+  if (age >= 18 && age <= 81) {
+    return Math.round(206.9 - (0.67 * age));    
+  }
+  else {
+    return -1;
+  }
+}
+
+// pass calculateArray as a callback function
+// to do this: skip () after function
+var ages = arrayCalc(birthYear, calculateAge);
+var minors = arrayCalc(ages, isMinor);
+var maxHeartRates = arrayCalc(ages, maxHeartRate);
+
+console.log(ages);
+console.log(minors);
+console.log(maxHeartRates);
