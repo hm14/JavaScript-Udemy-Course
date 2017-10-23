@@ -1,40 +1,32 @@
-var currentYear = 2017;
+// functions returning functions
 
-// First class functions
-
-var birthYear = [1989, 1978, 1987, 2006, 1969];
-
-function arrayCalc(birthYear, fn) {
-  var resultArray = [];
-  for(var i=0; i<birthYear.length; i++) {
-    resultArray.push(fn(birthYear[i]));
-  }
-  return resultArray;
-}
-
-function calculateAge(birthYear) {
-  return currentYear - birthYear;
-}
-
-function isMinor(age) {
-  return age >= 18;
-}
-
-function maxHeartRate(age) {
-  if (age >= 18 && age <= 81) {
-    return Math.round(206.9 - (0.67 * age));    
-  }
-  else {
-    return -1;
+function getInterviewQuestion(job) {
+  if (job === 'Teacher') {
+    return function(name) {
+      console.log(name + ', what do you know about growth mindset?');
+    }
+  } else if (job === 'Designer') {
+    return function(name) {
+      console.log(name + ', what is your design philosophy?');
+    }
+  } else if (job === 'Web developer') {
+    return function(name) {
+      console.log(name + ', what is CSRF?');
+    }
+  } else {
+    return function(name) {
+      console.log('Hello, ' + name + '. What motivates you?')
+    }
   }
 }
 
-// pass calculateArray as a callback function
-// to do this: skip () after function
-var ages = arrayCalc(birthYear, calculateAge);
-var minors = arrayCalc(ages, isMinor);
-var maxHeartRates = arrayCalc(ages, maxHeartRate);
+var teacherQuestion = getInterviewQuestion('Teacher');
+teacherQuestion('John');
 
-console.log(ages);
-console.log(minors);
-console.log(maxHeartRates);
+var designerQuestion = getInterviewQuestion('Designer');
+designerQuestion('Jane');
+
+var developerQuestion = getInterviewQuestion('Web developer');
+developerQuestion('Joanne');
+
+getInterviewQuestion('Manager')('Mary');
