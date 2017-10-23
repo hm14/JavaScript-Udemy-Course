@@ -1,23 +1,53 @@
-var currentYear = 2017;
+// primitives vs. objects
 
-// Object.create
+// Prmitive
+// primitives are accessed as values
+var a = 1;
+var b = a;
+console.log('a = ' + a);
+console.log('b = ' + b);
+a = 11;
+console.log('new a = ' + a);
 
-var personProto = {
-  calculateAge: function() {
-    console.log(currentYear - this.yearOfBirth);
-  }
+// Objects
+
+// objects are accessed by reference
+// objects are accessed as place in memory
+
+var obj1 = {
+  name: 'John',
+  age: 26
 };
 
-var john = Object.create(personProto);
-john.firstName = 'John';
-john.lastName = 'Smith';
-john.yearOfBirth = 1974;
-john.calculateAge();
+var obj2 = obj1;
 
-var jane = Object.create(personProto, {
-  name: {value: 'Jane'},
-  yearOfBirth: {value: 1978},
-  job: {value: 'Manager'}
-});
+console.log('obj1.age is ' + obj1.age);
+console.log('obj2.age is ' + obj2.age);
 
-jane.calculateAge();
+obj1.age = 32;
+
+console.log('obj1.age is ' + obj1.age);
+console.log('obj2.age is ' + obj2.age);
+
+// Functions
+
+var age = 44;
+var obj = {
+  name: 'Gina',
+  city: 'Garden'
+}
+
+// when primitives are passed to functions, a copy is created
+// when objects are passed to functions, no copy is made
+// the object is not really passed to the function
+// but a reference that points to the object
+
+function change(a, b) {
+  a = 33;
+  b.city = 'San Francisco';
+}
+
+change(age, obj);
+
+console.log(age);
+console.log(obj.city);
