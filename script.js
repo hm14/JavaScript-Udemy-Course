@@ -13,12 +13,21 @@
     }
   }
 
-  Question.prototype.checkAnswer = function(answer) {
-    if(answer === questions[index].correctAnswer) {
+  Question.prototype.checkAnswer = function(answer, keepScore) {
+    var score;
+    if(answer === this.correctAnswer) {
       console.log('You scored a point!');
+      score = keepScore(true);
     } else {
       console.log('You missed this one. Try another!')
+      score = keepScore();
     }
+    this.showScore(score);
+  }
+
+  Question.prototype.showScore = function(score) {
+    console.log('Your current score is: ' + score);
+    console.log('* * * * * * * * * * * * * * ');
   }
 
   var question1 = new Question('What is 1 + 2?', [1,2,3,4], 2);
@@ -33,11 +42,36 @@
     question4
   ];
 
-  var index = Math.floor(Math.random() * questions.length);
+  function getScore() {
+    var score = 0;
+    return function(correct) {
+      if (correct) {
+        score++;
+      }
+      return score;
+    }
+  }
 
-  questions[index].showQuestion();
+  var keepScore = getScore();
+  
+  function nextQuestion() {
+    var index = Math.floor(Math.random() * questions.length);
 
-  var answer = parseInt(prompt('Enter your answer choice number:'));
+    questions[index].showQuestion();
 
-  questions[index].checkAnswer(answer);
+    var answer = prompt('Enter your answer choice number: (press q to quit)');
+
+    if(answer != 'q') {
+      answer = parseInt(answer);
+      questions[index].checkAnswer(answer, keepScore);
+      nextQuestion();
+    } else {
+      console.log('quitting game...');
+      console.log('Your current score is: ' + keepScore());
+      console.log('* * * * * * * * * * * * * * ');
+    }
+  };
+
+  nextQuestion();
+
  }) ();
