@@ -1,23 +1,37 @@
-// Closures
-// An inner function can access the variables and parameters of its outer function
-// even after the outer function has returned
+// Call and Bind
 
-var currentYear = 2017;
+//  CALL
 
-function retirement(retirementAge) {
-  return function(yearOfBirth) {
-    var str = ' years left until retirement!'
-    var age = currentYear - yearOfBirth;
-    console.log(retirementAge - age + str);
+var john = {
+  name: 'John',
+  age: 22,
+  job: 'teacher',
+  greeting: function(style, time) {
+    if(style === 'formal') {
+      console.log('Good ' + time + ', ladies and gentlemen! I\'m ' + this.name + '. I\'m a ' + this.age + ' year old ' + this.job +'.');
+    } else if (style === 'friendly') {
+      console.log('Hey! What\'s up? I\'m ' + this.name + '. I\'m a ' + this.age + ' year old ' + this.job +'. Have a nice ' + time +'!');
+    }
   }
-}
+};
 
-var retirementUS = retirement(66);
-var retirementGermany = retirement(65);
-var retirementIceland = retirement(67);
+var emily = {
+  name: 'Emily',
+  age: 23,
+  job: 'developer'
+};
 
-retirementUS(1969);
-retirementGermany(1969);
-retirementIceland(1969);
+john.greeting('formal', 'morning');
+john.greeting('friendly', 'afternoon');
 
-retirement(65)(1959);
+// method borrowing
+john.greeting.call(emily, 'formal', 'afternoon');
+
+// BIND
+
+// preset an argument for a function
+var johnFriendly = john.greeting.bind(john, 'friendly');
+johnFriendly('morning');
+
+var emilyFormal = john.greeting.bind(emily, 'formal');
+emilyFormal('evening');
