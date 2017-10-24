@@ -1,37 +1,43 @@
-// Call and Bind
+(function() {
+  function Question(question, answerChoices, correctAnswer) {
+    this.question = question;
+    this.answerChoices = answerChoices;
+    this.correctAnswer = correctAnswer;
+  }
 
-//  CALL
+  Question.prototype.showQuestion = function() {
+    console.log(this.question);
 
-var john = {
-  name: 'John',
-  age: 22,
-  job: 'teacher',
-  greeting: function(style, time) {
-    if(style === 'formal') {
-      console.log('Good ' + time + ', ladies and gentlemen! I\'m ' + this.name + '. I\'m a ' + this.age + ' year old ' + this.job +'.');
-    } else if (style === 'friendly') {
-      console.log('Hey! What\'s up? I\'m ' + this.name + '. I\'m a ' + this.age + ' year old ' + this.job +'. Have a nice ' + time +'!');
+    for (var i=0; i<this.answerChoices.length; i++) {
+      console.log('Choice ' + i + ': ' + this.answerChoices[i]);
     }
   }
-};
 
-var emily = {
-  name: 'Emily',
-  age: 23,
-  job: 'developer'
-};
+  Question.prototype.checkAnswer = function(answer) {
+    if(answer === questions[index].correctAnswer) {
+      console.log('You scored a point!');
+    } else {
+      console.log('You missed this one. Try another!')
+    }
+  }
 
-john.greeting('formal', 'morning');
-john.greeting('friendly', 'afternoon');
+  var question1 = new Question('What is 1 + 2?', [1,2,3,4], 2);
+  var question2 = new Question('What is 3 + 0?', [1,2,3,4], 2);
+  var question3 = new Question('What is 0 + 2?', [1,2,3,4], 1);
+  var question4 = new Question('What is 2 + 2?', [1,2,3,4], 3);
 
-// method borrowing
-john.greeting.call(emily, 'formal', 'afternoon');
+  var questions = [
+    question1,
+    question2,
+    question3,
+    question4
+  ];
 
-// BIND
+  var index = Math.floor(Math.random() * questions.length);
 
-// preset an argument for a function
-var johnFriendly = john.greeting.bind(john, 'friendly');
-johnFriendly('morning');
+  questions[index].showQuestion();
 
-var emilyFormal = john.greeting.bind(emily, 'formal');
-emilyFormal('evening');
+  var answer = parseInt(prompt('Enter your answer choice number:'));
+
+  questions[index].checkAnswer(answer);
+ }) ();
